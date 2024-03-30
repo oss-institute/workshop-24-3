@@ -22,4 +22,4 @@ For styling, repository is using [Tailwind css](https://tailwindcss.com). You ca
 
 ## Deployment
 
-All pull requests are automatically deployed to ###. You can see the running version of the master branch >here<
+All pull requests are automatically deployed to https://workshop-24-3.onrender.com/.
