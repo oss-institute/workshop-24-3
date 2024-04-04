@@ -3,11 +3,13 @@ import React from 'react';
 type Props = {
 	onClick: () => void;
 	children: React.ReactNode;
+	disabled:boolean;
 };
 
-export const Button = ({ onClick, children }: Props) => (
+export const Button = ({ onClick, children, disabled }: Props) => (
 	<button
 		onClick={onClick}
+		disabled={disabled}
 		data-testid="button"
 		className="
 		rounded-lg bg-destructive px-6 text-primary-foreground shadow
