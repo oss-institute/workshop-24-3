@@ -14,7 +14,7 @@ export const Input = ({ value, onValueChange, onEnter }: Props) => {
 	};
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.code === 'Enter') {
+		if (e.code === 'Enter' || e.code === 'NumpadEnter') {
 			e.preventDefault();
 			onEnter();
 		}
