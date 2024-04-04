@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Input } from './input';
+
 import { Button } from './button';
+import { Input } from './input';
 
 type Props = {
 	onAddItem: (content: string) => void;
@@ -27,7 +28,9 @@ export function AddItem({ onAddItem: addItem }: Props) {
 				onValueChange={handleOnValueChange}
 				onEnter={handleAdd}
 			/>
-			<Button onClick={handleAdd}>Add item</Button>
+			<Button disabled={!value} onClick={handleAdd}>
+				Add item
+			</Button>
 		</div>
 	);
 }
