@@ -5,7 +5,9 @@ type Props = {
 	children: React.ReactNode;
 };
 
-export const Button = ({ onClick, children }: Props) => (
+export const Button = ({ 
+	onClick,
+	children }: Props) => (
 	<button
 		onClick={onClick}
 		data-testid="button"
