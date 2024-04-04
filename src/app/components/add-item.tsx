@@ -10,6 +10,7 @@ type Props = {
 
 export function AddItem({ onAddItem: addItem }: Props) {
 	const [value, setValue] = useState('');
+
 	const handleOnValueChange = (value: string) => {
 		setValue(value);
 	};
@@ -18,6 +19,7 @@ export function AddItem({ onAddItem: addItem }: Props) {
 		if (value !== '') {
 			addItem(value);
 		}
+		setValue('');
 	};
 
 	return (
