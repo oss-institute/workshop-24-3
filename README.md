@@ -16,7 +16,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the built project.
 
-## Stlying
+## Styling
 
 For styling, repository is using [Tailwind css](https://tailwindcss.com). You can check global variables and colors definition in [global.css](https://github.com/oss-institute/workshop-template/blob/master/src/app/globals.css), theme is defined in [tailwind.config.ts](https://github.com/oss-institute/workshop-template/blob/master/tailwind.config.ts).
 
