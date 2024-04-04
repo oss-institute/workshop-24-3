@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
 export type TodoItem = {
 	content: string;
@@ -15,28 +15,27 @@ const defaultItems = [
 ];
 
 export function useItemsStore() {
-	const [items, setItems] = useState<TodoItem[]>(defaultItems);
+	const [items, setItems] = useLocalStorage('items', defaultItems);
 
 	const addItem = (content: string) => {
-		setItems(
-			items.concat({
-				content,
-				id: items.length + 1,
-				isDone: false,
-			}),
-		);
+		const newItem: TodoItem = {
+			content,
+			id: items.length + 1,
+			isDone: false,
+		};
+		setItems([...items, newItem]);
 	};
 
 	const toggleItem = (id: number) => {
-		setItems(
-			items.map((item) =>
-				item.id === id ? { ...item, isDone: !item.isDone } : item,
-			),
+		const updatedItems = items.map((item: TodoItem) =>
+			item.id === id ? { ...item, isDone: !item.isDone } : item,
 		);
+		setItems(updatedItems);
 	};
 
 	const deleteItem = (id: number) => {
-		setItems(items.filter((item) => item.id !== id));
+		const updatedItems = items.filter((item: TodoItem) => item.id !== id);
+		setItems(updatedItems);
 	};
 
 	return { items, addItem, toggleItem, deleteItem };
