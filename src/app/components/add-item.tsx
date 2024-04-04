@@ -29,9 +29,7 @@ export function AddItem({ onAddItem: addItem }: Props) {
 				onValueChange={handleOnValueChange}
 				onEnter={handleAdd}
 			/>
-			<Button onClick={handleAdd} disabled={value === ''}>
-				Add item
-			</Button>
+			<Button onClick={handleAdd}>Add item</Button>
 		</div>
 	);
 }
