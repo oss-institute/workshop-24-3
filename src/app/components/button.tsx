@@ -3,10 +3,12 @@ import React from 'react';
 type Props = {
 	onClick: () => void;
 	children: React.ReactNode;
+	disabled: boolean;
 };
 
-export const Button = ({ onClick, children }: Props) => (
+export const Button = ({ onClick, children, disabled }: Props) => (
 	<button
+		disabled={disabled}
 		onClick={onClick}
 		data-testid="button"
 		className="
