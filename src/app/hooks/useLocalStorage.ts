@@ -1,36 +1,28 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { TodoItem } from './useItemsStore';
 
+function getInitialValue(key: string, defaultItems: TodoItem[]) {
+	try {
+		const item = localStorage.getItem(key);
+
+		return item ? JSON.parse(item) : defaultItems;
+	} catch {
+		return [];
+	}
+}
+
 export function useLocalStorage(key: string, defaultItems: TodoItem[]) {
-	const [value, setValue] = useState(() => {
-		try {
-			const storedValue = localStorage.getItem(key);
+	const [value, setValue] = useState<TodoItem[]>(
+		getInitialValue(key, defaultItems),
+	);
 
-			return storedValue
-				? JSON.parse(storedValue)
-				: JSON.parse(
-						localStorage.getItem('items') ??
-							JSON.stringify(defaultItems),
-					);
-		} catch (error) {
-			console.error(error);
+	const storeValue = (items: TodoItem[]) => {
+		setValue(items);
+		localStorage.setItem(key, JSON.stringify(items));
+	};
 
-			return JSON.parse(
-				localStorage.getItem('items') ?? JSON.stringify(defaultItems),
-			);
-		}
-	});
-
-	useEffect(() => {
-		try {
-			localStorage.setItem(key, JSON.stringify(value));
-		} catch (error) {
-			console.error(error);
-		}
-	}, [key, value]);
-
-	return [value, setValue];
+	return [value, storeValue] as const;
 }

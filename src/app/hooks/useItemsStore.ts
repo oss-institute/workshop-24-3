@@ -8,7 +8,7 @@ export type TodoItem = {
 	id: number;
 };
 
-const defaultItems = [
+export const defaultItems = [
 	{ content: 'Feed a dog', id: 1, isDone: true },
 	{ content: 'Pick up kids from school', id: 2, isDone: false },
 	{ content: 'Water plants', id: 3, isDone: false },
@@ -18,24 +18,25 @@ export function useItemsStore() {
 	const [items, setItems] = useLocalStorage('items', defaultItems);
 
 	const addItem = (content: string) => {
-		const newItem: TodoItem = {
-			content,
-			id: items.length + 1,
-			isDone: false,
-		};
-		setItems([...items, newItem]);
+		setItems(
+			items.concat({
+				content,
+				id: Date.now(),
+				isDone: false,
+			}),
+		);
 	};
 
 	const toggleItem = (id: number) => {
-		const updatedItems = items.map((item: TodoItem) =>
-			item.id === id ? { ...item, isDone: !item.isDone } : item,
+		setItems(
+			items.map((item) =>
+				item.id === id ? { ...item, isDone: !item.isDone } : item,
+			),
 		);
-		setItems(updatedItems);
 	};
 
 	const deleteItem = (id: number) => {
-		const updatedItems = items.filter((item: TodoItem) => item.id !== id);
-		setItems(updatedItems);
+		setItems(items.filter((item) => item.id !== id));
 	};
 
 	return { items, addItem, toggleItem, deleteItem };
