@@ -21,7 +21,7 @@ export function useItemsStore() {
 		setItems(
 			items.concat({
 				content,
-				id: Date.now(),
+				id: items.length + 1,
 				isDone: false,
 			}),
 		);
