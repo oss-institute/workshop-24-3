@@ -5,6 +5,10 @@ import userEvent from '@testing-library/user-event';
 import TodoList from '../src/app/page';
 import { useItemsStore } from '../src/app/hooks/useItemsStore';
 
+afterEach(() => {
+	localStorage.clear();
+});
+
 it('should append new item at the end of the list by clicking the button', async () => {
 	render(<TodoList />);
 

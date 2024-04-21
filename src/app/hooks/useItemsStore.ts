@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useLocalStorage } from './useLocalStorage';
 
 export type TodoItem = {
 	content: string;
@@ -8,14 +8,14 @@ export type TodoItem = {
 	id: number;
 };
 
-const defaultItems = [
+export const defaultItems = [
 	{ content: 'Feed a dog', id: 1, isDone: true },
 	{ content: 'Pick up kids from school', id: 2, isDone: false },
 	{ content: 'Water plants', id: 3, isDone: false },
 ];
 
 export function useItemsStore() {
-	const [items, setItems] = useState<TodoItem[]>(defaultItems);
+	const [items, setItems] = useLocalStorage('items', defaultItems);
 
 	const addItem = (content: string) => {
 		setItems(

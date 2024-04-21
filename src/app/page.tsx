@@ -1,10 +1,10 @@
 'use client';
 
+import { Background } from './branding/background';
 import { AddItem } from './components/add-item';
-import { useItemsStore } from './hooks/useItemsStore';
 import { Header } from './components/header';
 import { ItemsList } from './components/items-list';
-import { Background } from './branding/background';
+import { useItemsStore } from './hooks/useItemsStore';
 
 export default function TodoList() {
 	const { items, addItem, toggleItem, deleteItem } = useItemsStore();
